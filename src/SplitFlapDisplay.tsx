@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { NUMERIC } from './constants';
+import { PUNCTUATION } from './constants';
 
 import SplitFlapCharacter from './Character';
 
@@ -11,6 +11,7 @@ export interface SplitFlapDisplayProps {
   borderWidth: string;
   characterSet: Array<string>;
   characterWidth: string;
+  fontWeight: string;
   fontSize: string;
   minLength?: number;
   padDirection: string;
@@ -24,12 +25,15 @@ type StyleProps = {
   borderColor: string;
   borderWidth: string;
   color: string;
+  fontWeight: string;
   fontSize: string;
 };
 
 const Wrapper = styled.div<StyleProps>`
   display: flex;
+  border-radius: 3px;
   color: ${({ color }): string => color};
+  font-weight: 500;
   font-size: ${({ fontSize }): string => fontSize};
   > * {
     &:not(:first-child) {
@@ -42,14 +46,15 @@ const Wrapper = styled.div<StyleProps>`
 
 const defaultProps = {
   background: '#000000',
-  borderColor: '#dddddd',
+  borderColor: '#dddddd30',
   borderWidth: '1px',
-  characterSet: NUMERIC,
-  characterWidth: '1em',
-  fontSize: '1em',
-  minLength: 5,
-  padDirection: 'left',
-  step: 200,
+  characterSet: PUNCTUATION,
+  characterWidth: '.8em',
+  fontWeight: 'bold',
+  fontSize: '4.4em',
+  minLength: 95,
+  padDirection: 'right',
+  step: 96,
   textColor: '#dddddd',
   value: '94609',
 };
@@ -77,6 +82,7 @@ const SplitFlapDisplay: React.FC<SplitFlapDisplayProps> = ({
   borderWidth = defaultProps.borderWidth,
   characterSet = defaultProps.characterSet,
   characterWidth = defaultProps.characterWidth,
+  fontWeight = defaultProps.fontWeight,
   fontSize = defaultProps.fontSize,
   minLength = defaultProps.minLength,
   padDirection = defaultProps.padDirection,
@@ -160,6 +166,7 @@ const SplitFlapDisplay: React.FC<SplitFlapDisplayProps> = ({
       borderColor={borderColor}
       borderWidth={borderWidth}
       color={textColor}
+      fontWeight={fontWeight}
       fontSize={fontSize}
     >
       {prevChars.map((v: string, idx: number) => (

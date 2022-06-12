@@ -13,29 +13,31 @@ const typeToCharSetArray = {
   numeric: NUMERIC,
   alpha: ALPHA,
   alphanumeric: [...ALPHA, ...NUMERIC],
-  punctuation: [...ALPHA, ...PUNCTUATION],
+  punctuation: [...ALPHA, ...PUNCTUATION, ...NUMERIC],
 };
 
 const typeToCharSet = {
   numeric: 'NUMERIC',
   alpha: 'ALPHA',
   alphanumeric: '[...ALPHA, ...NUMERIC]',
-  punctuation: '[...ALPHA, ...PUNCTUATION]',
+  punctuation: '[...ALPHA, ...PUNCTUATION, ...NUMERIC]',
 };
 
 const App: React.FC<Record<string, never>> = () => {
-  const [exampleSet, setExampleSet] = useState<DefaultInputKeys>('numeric');
+  const [exampleSet, setExampleSet] = useState<DefaultInputKeys>('punctuation');
   const [background, setBackground] = useState<string>('#000000');
-  const [borderColor, setBorderColor] = useState<string>('#dddddd');
+  const [borderColor, setBorderColor] = useState<string>('#dddddd30');
   const [borderWidth, setBorderWidth] = useState<string>('1px');
-  const [characterWidth, setCharacterWidth] = useState<string>('1em');
-  const [fontSize, setFontSize] = useState<string>('2em');
-  const [minLength, setMinLength] = useState<number>(defaultInputs.numeric.length);
-  const [padDirection, setPadDirection] = useState<string>('left');
-  const [value, setValue] = useState<string>(defaultInputs.numeric);
+  const [characterWidth, setCharacterWidth] = useState<string>('.8em');
+  const [fontWeight, setFontWeight] = useState<string>('bold');
+  const [fontSize, setFontSize] = useState<string>('4.4em');
+  // const [minLength, setMinLength] = useState<number>(defaultInputs.numeric.length);
+  const [minLength, setMinLength] = useState<number>(52);
+  const [padDirection, setPadDirection] = useState<string>('right');
+  const [value, setValue] = useState<string>(defaultInputs.punctuation);
   const [textColor, setTextColor] = useState<string>('#dddddd');
-  const [step, setStep] = useState<number>(200);
-  const [withSound, setWithSound] = useState<boolean | string>(false);
+  const [step, setStep] = useState<number>(96);
+  const [withSound, setWithSound] = useState<boolean | string>(true);
   const [withCustomSound, setWithCustomSound] = useState<string>('');
 
   const generateInputHandler =
@@ -76,31 +78,34 @@ const App: React.FC<Record<string, never>> = () => {
 
   return (
     <div className="container">
-      <h3>React Split Flap Display</h3>
+      {/* <h3>React Split Flap Display</h3> */}
       <div className="flex-container-vertical">
-        <Wrapper>
-          <SplitFlapDisplay
-            background={background}
-            borderColor={borderColor}
-            borderWidth={borderWidth}
-            characterSet={typeToCharSetArray[exampleSet]}
-            characterWidth={characterWidth}
-            fontSize={fontSize}
-            minLength={minLength}
-            padDirection={padDirection}
-            step={step}
-            textColor={textColor}
-            value={value}
-            withSound={withSound}
-          />
-        </Wrapper>
-        <div className="flex-container-horizontal">
+        <div className="board-display-wrapper">
+          <Wrapper>
+            <SplitFlapDisplay
+              background={background}
+              borderColor={borderColor}
+              borderWidth={borderWidth}
+              characterSet={typeToCharSetArray[exampleSet]}
+              characterWidth={characterWidth}
+              // fontWeight={fontWeight}
+              fontSize={fontSize}
+              minLength={minLength}
+              padDirection={padDirection}
+              step={step}
+              textColor={textColor}
+              value={value}
+              withSound={withSound}
+            />
+          </Wrapper>
+        </div>
+        <div className="flex-container-horizontal board-config-wrap">
           <div>
             <Wrapper>
               <div>
                 <label>
                   display:&nbsp;
-                  <input value={value} onChange={generateInputHandler(setValue)} />
+                  <input style={{ width: '300px' }} value={value} onChange={generateInputHandler(setValue)} />
                 </label>
               </div>
               <div>
@@ -128,7 +133,7 @@ const App: React.FC<Record<string, never>> = () => {
                   <label>
                     <input
                       type="radio"
-                      value="left"
+                      value="right"
                       onChange={generateInputHandler(setPadDirection)}
                       checked={padDirection === 'left'}
                     />
@@ -173,6 +178,10 @@ const App: React.FC<Record<string, never>> = () => {
                 <input value={borderWidth} onChange={generateInputHandler(setBorderWidth)} />
               </div>
               <div>
+                font weight:&nbsp;
+                <input value={fontWeight} onChange={generateInputHandler(setFontWeight)} />
+              </div>
+              <div>
                 font size:&nbsp;
                 <input value={fontSize} onChange={generateInputHandler(setFontSize)} />
               </div>
@@ -212,6 +221,7 @@ const App: React.FC<Record<string, never>> = () => {
             borderWidth={borderWidth}
             characterSet={typeToCharSet[exampleSet]}
             characterWidth={characterWidth}
+            fontWeight={fontWeight}
             fontSize={fontSize}
             minLength={minLength}
             padDirection={padDirection}
