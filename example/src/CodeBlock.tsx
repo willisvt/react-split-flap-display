@@ -6,7 +6,6 @@ type CodeBlockProps = {
   borderWidth: string;
   characterSet: string;
   characterWidth: string;
-  fontWeight: string;
   fontSize: string;
   minLength: number;
   padDirection: string;
@@ -22,7 +21,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   borderWidth,
   characterSet,
   characterWidth,
-  fontWeight,
   fontSize,
   minLength,
   padDirection,
@@ -39,7 +37,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     borderWidth='${borderWidth}'
     characterSet={${characterSet}}
     characterWidth='${characterWidth}'
-    fontWeight='${fontWeight}'
     fontSize='${fontSize}'
     minLength={${minLength}}
     padDirection='${padDirection}'

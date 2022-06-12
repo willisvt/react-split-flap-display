@@ -29,7 +29,6 @@ const App: React.FC<Record<string, never>> = () => {
   const [borderColor, setBorderColor] = useState<string>('#dddddd30');
   const [borderWidth, setBorderWidth] = useState<string>('1px');
   const [characterWidth, setCharacterWidth] = useState<string>('.8em');
-  const [fontWeight, setFontWeight] = useState<string>('bold');
   const [fontSize, setFontSize] = useState<string>('4.4em');
   // const [minLength, setMinLength] = useState<number>(defaultInputs.numeric.length);
   const [minLength, setMinLength] = useState<number>(52);
@@ -88,7 +87,6 @@ const App: React.FC<Record<string, never>> = () => {
               borderWidth={borderWidth}
               characterSet={typeToCharSetArray[exampleSet]}
               characterWidth={characterWidth}
-              // fontWeight={fontWeight}
               fontSize={fontSize}
               minLength={minLength}
               padDirection={padDirection}
@@ -178,10 +176,6 @@ const App: React.FC<Record<string, never>> = () => {
                 <input value={borderWidth} onChange={generateInputHandler(setBorderWidth)} />
               </div>
               <div>
-                font weight:&nbsp;
-                <input value={fontWeight} onChange={generateInputHandler(setFontWeight)} />
-              </div>
-              <div>
                 font size:&nbsp;
                 <input value={fontSize} onChange={generateInputHandler(setFontSize)} />
               </div>
@@ -221,7 +215,6 @@ const App: React.FC<Record<string, never>> = () => {
             borderWidth={borderWidth}
             characterSet={typeToCharSet[exampleSet]}
             characterWidth={characterWidth}
-            fontWeight={fontWeight}
             fontSize={fontSize}
             minLength={minLength}
             padDirection={padDirection}

@@ -11,7 +11,6 @@ export interface SplitFlapDisplayProps {
   borderWidth: string;
   characterSet: Array<string>;
   characterWidth: string;
-  fontWeight: string;
   fontSize: string;
   minLength?: number;
   padDirection: string;
@@ -25,7 +24,6 @@ type StyleProps = {
   borderColor: string;
   borderWidth: string;
   color: string;
-  fontWeight: string;
   fontSize: string;
 };
 
@@ -50,7 +48,6 @@ const defaultProps = {
   borderWidth: '1px',
   characterSet: PUNCTUATION,
   characterWidth: '.8em',
-  fontWeight: 'bold',
   fontSize: '4.4em',
   minLength: 95,
   padDirection: 'right',
@@ -82,7 +79,6 @@ const SplitFlapDisplay: React.FC<SplitFlapDisplayProps> = ({
   borderWidth = defaultProps.borderWidth,
   characterSet = defaultProps.characterSet,
   characterWidth = defaultProps.characterWidth,
-  fontWeight = defaultProps.fontWeight,
   fontSize = defaultProps.fontSize,
   minLength = defaultProps.minLength,
   padDirection = defaultProps.padDirection,
@@ -166,7 +162,6 @@ const SplitFlapDisplay: React.FC<SplitFlapDisplayProps> = ({
       borderColor={borderColor}
       borderWidth={borderWidth}
       color={textColor}
-      fontWeight={fontWeight}
       fontSize={fontSize}
     >
       {prevChars.map((v: string, idx: number) => (
